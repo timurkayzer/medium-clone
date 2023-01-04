@@ -5,7 +5,7 @@ interface IAuthUser extends Omit<IUser, 'passwordHash'> {
 }
 
 export interface IUserService {
-    insertUser(userDto): IUser;
+    insertUser(registerDto: RegisterDto): IUser;
 
-    authUser(loginDto): IAuthUser;
+    authUser(loginDto: LoginDto): IAuthUser;
 }
