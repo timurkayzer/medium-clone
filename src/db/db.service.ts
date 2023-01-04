@@ -1,5 +1,5 @@
-import { injectable } from 'inversify';
 import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { DataSource } from 'typeorm';
 import dataSource from './datasource';
 

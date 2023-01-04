@@ -1,12 +1,12 @@
 import { Column } from "typeorm/decorator/columns/Column";
 import { PrimaryGeneratedColumn } from "typeorm/decorator/columns/PrimaryGeneratedColumn";
 import { Entity } from "typeorm/decorator/entity/Entity";
-import dataSource from "../db/datasource";
+import { IUser } from "./user.interface";
 
 @Entity({
     name: 'users'
 })
-export class UserEntity {
+export class UserEntity implements IUser {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -14,9 +14,8 @@ export class UserEntity {
     login: string;
 
     @Column()
+    name: string;
+
+    @Column()
     passwordHash: string;
-
-
 }
-
-export const userModel = dataSource.getRepository(UserEntity);

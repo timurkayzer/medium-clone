@@ -1,0 +1,1 @@
+export const READ_SYMBOLS_PER_MINUTE = 1400 || process.env.READ_SYMBOLS_PER_MINUTE;

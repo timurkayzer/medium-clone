@@ -1,6 +1,9 @@
+import 'reflect-metadata';
 import { Request, Response, Router } from "express";
+import { injectable } from "inversify";
 import { IController } from "../controller.interface";
 
+@injectable()
 export class PostController implements IController {
     public router = Router();
 

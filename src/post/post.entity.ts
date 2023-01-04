@@ -2,19 +2,31 @@ import { Column } from "typeorm/decorator/columns/Column";
 import { PrimaryGeneratedColumn } from "typeorm/decorator/columns/PrimaryGeneratedColumn";
 import { Entity } from "typeorm/decorator/entity/Entity";
 import dataSource from "../db/datasource";
+import { IPost } from "./post.interface";
 
 @Entity({
-    name: 'users'
+    name: 'posts'
 })
-export class UserEntity {
+export class Post implements IPost {
+
+    constructor(title: string, text: string) {
+        this.title = title;
+        this.text = text;
+        this.createdAt = new Date();
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    login: string;
+    title: string;
 
     @Column()
-    passwordHash: string;
-}
+    text: string;
 
-export const userModel = dataSource.getRepository(UserEntity);
+    @Column()
+    readTime: number;
+
+    @Column()
+    createdAt: Date;
+}
