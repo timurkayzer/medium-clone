@@ -1,6 +1,21 @@
-import { Handler, NextFunction, Request, RequestHandler, Response } from "express";
+import { Request, Response, NextFunction } from 'express';
+import { IUserService } from '../user/user.service.interface';
+import { IMiddleware } from './middleware.interface';
 
+export class AuthMiddleware implements IMiddleware {
+	constructor(private userService: IUserService) { }
 
-export function AuthMiddleware(req: Request, res: Response, next: NextFunction) {
-    next();
+	async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
+		if (!req.user) {
+			res.status(403).send();
+		} else {
+			const user = await this.userService.getUserInfo(req.user);
+			if (user) {
+				req.userModel = user;
+				next();
+			} else {
+				res.status(403).send();
+			}
+		}
+	}
 }

@@ -1,6 +1,10 @@
+import 'reflect-metadata';
 import { Request, Response, Router } from "express";
+import { injectable } from "inversify";
 import { IController } from "../controller.interface";
 
+
+@injectable()
 class UserController implements IController {
     public router = Router();
 
@@ -22,5 +26,3 @@ class UserController implements IController {
     }
 
 }
-
-export const userController = new UserController();

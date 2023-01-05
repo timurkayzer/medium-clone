@@ -1,26 +1,39 @@
 import 'reflect-metadata';
 import { Request, Response, Router } from "express";
-import { injectable } from "inversify";
+import { inject, injectable } from "inversify";
 import { IController } from "../controller.interface";
+import { DICT } from '../dict';
+import { IPostService } from './post.service.interface';
 
 @injectable()
 export class PostController implements IController {
     public router = Router();
 
-    constructor() {
+    constructor(@inject(DICT.PostService) private postService: IPostService) {
         this.initRoutes();
     }
 
     private initRoutes() {
-        this.router.post('login', this.login.bind(this));
-        this.router.post('register', this.register.bind(this));
+        this.router.post('', this.createPost.bind(this));
+        this.router.get('', this.getPosts.bind(this));
+        this.router.delete('', this.deletePost.bind(this));
+        this.router.patch('', this.updatePost.bind(this));
     }
 
-    async login(req: Request, res: Response) {
+
+    async createPost(req: Request, res: Response) {
 
     }
 
-    async register(req: Request, res: Response) {
+    async getPosts(req: Request, res: Response) {
+
+    }
+
+    async deletePost(req: Request, res: Response) {
+
+    }
+
+    async updatePost(req: Request, res: Response) {
 
     }
 }
