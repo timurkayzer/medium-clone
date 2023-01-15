@@ -5,7 +5,7 @@ import { IController } from "../controller.interface";
 
 
 @injectable()
-class UserController implements IController {
+export class UserController implements IController {
     public router = Router();
 
     constructor() {

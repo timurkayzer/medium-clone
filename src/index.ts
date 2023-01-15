@@ -11,6 +11,7 @@ import { IMiddleware } from './middlewares/middleware.interface';
 import { PostController } from './post/post.controller';
 import { PostService } from './post/post.service';
 import { IPostService } from './post/post.service.interface';
+import { UserController } from './user/user.controller';
 
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
@@ -18,6 +19,7 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
     bind<ICryptoService>(DICT.CryptoService).to(CryptoService);
     bind<IPostService>(DICT.PostService).to(PostService);
     bind<IController>(DICT.PostController).to(PostController);
+    bind<IController>(DICT.UserController).to(UserController);
     bind<IMiddleware>(DICT.JwtMiddleware).to(JwtMiddleware);
     bind(DICT.App).to(App).inSingletonScope();
 });

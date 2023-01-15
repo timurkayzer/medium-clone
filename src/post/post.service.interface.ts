@@ -8,7 +8,7 @@ export interface IPostService {
 
     deletePost(id: number): Promise<IPost>;
 
-    updatePost(post: Partial<InsertPostDto>): Promise<IPost>;
+    updatePost(post: Partial<IPost>): Promise<IPost>;
 
     calculateReadTimeMs(text: string): number;
 }

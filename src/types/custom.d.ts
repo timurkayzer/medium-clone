@@ -3,9 +3,7 @@ declare namespace Express {
         user: string;
         userModel: {
             id: number;
-            email: string;
-            name: string;
-            password: string;
+            login: string;
         };
     }
 }

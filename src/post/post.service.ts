@@ -30,12 +30,14 @@ export class PostService implements IPostService {
         }
     }
 
-    updatePost(post: Partial<InsertPostDto>): Promise<IPost> {
-        throw new Error('Method not implemented.');
-    }
-
-    calculateReadTimeMs(text: string): number {
-        return (text.length / READ_SYMBOLS_PER_MINUTE) * 60 * 1000;
+    async updatePost(post: Partial<IPost>): Promise<IPost> {
+        const updated = await this.postModel.update({ id: post.id }, post);
+        if (updated) {
+            return post as IPost;
+        }
+        else {
+            throw new Error("Post not found");
+        }
     }
 
     getPosts(): Promise<IPost[]> {
@@ -50,4 +52,10 @@ export class PostService implements IPostService {
 
         return this.postModel.save(post);
     }
+
+    calculateReadTimeMs(text: string): number {
+        return (text.length / READ_SYMBOLS_PER_MINUTE) * 60 * 1000;
+    }
+
+
 }
