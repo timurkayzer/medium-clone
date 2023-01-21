@@ -5,7 +5,6 @@ import { DICT } from '../dict';
 import { IDbService } from '../db/db.service.interface';
 import { Post } from './post.entity';
 import { InsertPostDto } from './insert-post.dto';
-import { ICryptoService } from '../crypto/crypto.service.interface';
 import { IPost } from './post.interface';
 import { IPostService } from './post.service.interface';
 import { READ_SYMBOLS_PER_MINUTE } from './constants';

@@ -7,9 +7,9 @@ interface IAuthUser extends Omit<IUser, 'passwordHash'> {
 }
 
 export interface IUserService {
-    insertUser(registerDto: RegisterDto): IUser;
+    insertUser(registerDto: RegisterDto): Promise<IUser>;
 
-    authUser(loginDto: LoginDto): IAuthUser;
+    authUser(loginDto: LoginDto): Promise<IAuthUser>;
 
     getUserInfo: (email: string) => Promise<IUser | null>;
 }

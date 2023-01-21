@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import { IUserService } from "./user.service.interface";
 import { DICT } from '../dict';
 import { IDbService } from '../db/db.service.interface';
-import { UserEntity } from './user.entity';
+import { User } from './user.entity';
 import { IUser } from './user.interface';
 import { LoginDto } from './login.dto';
 import { RegisterDto } from './register.dto';
@@ -15,16 +15,25 @@ export class UserService implements IUserService {
     private userModel;
 
     constructor(@inject(DICT.DbService) private dbService: IDbService) {
-        this.userModel = this.dbService.dataSource.getRepository(UserEntity);
+        this.userModel = this.dbService.dataSource.getRepository(User);
     }
 
-    getUserInfo: (email: string) => Promise<IUser | null>;
-
-    insertUser(registerDto: RegisterDto): IUser {
-        throw new Error('Method not implemented.');
+    async getUserInfo(email: string): Promise<IUser | null> {
+        const user = await this.userModel.findOneBy({ login: email });
+        return user;
     }
 
-    authUser(loginDto: LoginDto): IAuthUser {
+    insertUser(registerDto: RegisterDto): Promise<IUser> {
+        let user = new User();
+        user.login = registerDto.login;
+        user.name = registerDto.name;
+        user.passwordHash = registerDto.password;
+
+        user = this.userModel.create(user);
+        return this.userModel.save(user);
+    }
+
+    authUser(loginDto: LoginDto): Promise<IAuthUser> {
         throw new Error('Method not implemented.');
     }
 

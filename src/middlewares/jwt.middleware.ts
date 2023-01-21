@@ -15,7 +15,7 @@ export class JwtMiddleware implements IMiddleware {
 				if (error) {
 					next();
 				} else if (decoded) {
-					req.user = decoded.email;
+					req.userEmail = decoded.email;
 					next();
 				}
 			});

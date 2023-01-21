@@ -6,7 +6,7 @@ import { IUser } from "./user.interface";
 @Entity({
     name: 'users'
 })
-export class UserEntity implements IUser {
+export class User implements IUser {
     @PrimaryGeneratedColumn()
     id: number;
 

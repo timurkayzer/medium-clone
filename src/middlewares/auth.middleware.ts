@@ -6,10 +6,10 @@ export class AuthMiddleware implements IMiddleware {
 	constructor(private userService: IUserService) { }
 
 	async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
-		if (!req.user) {
-			res.status(403).send();
+		if (!req.userEmail) {
+			res.status(401).send();
 		} else {
-			const user = await this.userService.getUserInfo(req.user);
+			const user = await this.userService.getUserInfo(req.userEmail);
 			if (user) {
 				req.userModel = user;
 				next();
