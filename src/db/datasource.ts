@@ -1,8 +1,10 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions: DataSourceOptions = {
-    type: 'sqlite',
-    database: 'db.sqlite',
+    type: 'postgres',
+    database: 'medium-clone',
+    username: 'postgres',
+    password: 'postgres',
     entities: ['dist/**/*.entity.js'],
     migrations: ['dist/db/migrations/*.js'],
     synchronize: false

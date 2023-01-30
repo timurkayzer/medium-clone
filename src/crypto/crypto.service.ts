@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { injectable } from "inversify";
 import { ICryptoService } from "./crypto.service.interface";
+import { decode, sign, verify } from 'jsonwebtoken';
 
 @injectable()
 export class CryptoService implements ICryptoService {
