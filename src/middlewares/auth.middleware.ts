@@ -1,7 +1,10 @@
+import 'reflect-metadata';
 import { Request, Response, NextFunction } from 'express';
+import { injectable } from 'inversify';
 import { IUserService } from '../user/user.service.interface';
 import { IMiddleware } from './middleware.interface';
 
+@injectable()
 export class AuthMiddleware implements IMiddleware {
 	constructor(private userService: IUserService) { }
 

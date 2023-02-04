@@ -18,7 +18,7 @@ import { IUserService } from './user/user.service.interface';
 
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
-    bind<IDbService>(DICT.DbService).to(DbService).inSingletonScope();
+    bind<IDbService>(DICT.DbService).to(DbService);
     bind<ICryptoService>(DICT.CryptoService).to(CryptoService);
     bind<IPostService>(DICT.PostService).to(PostService);
     bind<IUserService>(DICT.UserService).to(UserService);

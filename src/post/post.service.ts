@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { injectable } from "inversify/lib/annotation/injectable";
+import { injectable } from "inversify";
 import { inject } from 'inversify';
 import { DICT } from '../dict';
 import { IDbService } from '../db/db.service.interface';
